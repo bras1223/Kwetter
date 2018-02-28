@@ -3,9 +3,13 @@ package nl.luukhermans.dao;
 import nl.luukhermans.domain.Message;
 import nl.luukhermans.domain.User;
 
+import javax.ejb.Stateless;
+import javax.enterprise.inject.Default;
 import java.util.HashMap;
 import java.util.List;
 
+@Stateless
+@Default
 public class MessageDaoColl implements MessageDao {
 
     private HashMap<Integer, Message> messages = new HashMap<>();

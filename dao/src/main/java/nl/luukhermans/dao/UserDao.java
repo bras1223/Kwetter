@@ -15,6 +15,4 @@ public interface UserDao {
     void updateUser(User user);
 
     void removeUser(User user);
-
-    void followUser(User follower, User following);
 }

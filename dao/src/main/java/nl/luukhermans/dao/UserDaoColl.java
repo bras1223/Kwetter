@@ -2,33 +2,40 @@ package nl.luukhermans.dao;
 
 import nl.luukhermans.domain.User;
 
+import javax.ejb.Stateless;
+import javax.enterprise.inject.Default;
 import java.util.Collection;
 import java.util.HashMap;
 
+@Stateless
+@Default
 public class UserDaoColl implements UserDao {
 
     private HashMap<Integer, User> users = new HashMap<>();
 
+    @Override
     public void addUser(User user) {
         users.put(user.getID(), user);
     }
 
+    @Override
     public Collection<User> getAllUsers() {
         return users.values();
     }
 
+    @Override
     public User findByID(int ID) {
         return users.get(ID);
     }
 
+    @Override
     public void updateUser(User user) {
         users.put(user.getID(), user);
     }
 
+    @Override
     public void removeUser(User user) {
         users.remove(user.getID());
     }
 
-    public void followUser(User follower, User following) {
-    }
 }

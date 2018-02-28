@@ -16,7 +16,7 @@ public class DataInit {
 
     @PostConstruct
     public void initialize() {
-        userService.addUser(User.builder().firstName("Luuk").lastName("Hermans").build());
+        userService.addUser(User.builder().ID(1).firstName("Luuk").lastName("Hermans").username("luuk.hermans").build());
     }
 
 
