@@ -1,5 +1,5 @@
 rootProject.name = 'Kwetter'
 
 include ':domain'
-include ':services'
+include ':service'
 include ':dao'
