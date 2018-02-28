@@ -45,6 +45,11 @@ public class UserDaoJPA implements UserDao {
         em.remove(user);
     }
 
+    @Override
+    public int count() {
+        return getAllUsers().size();
+    }
+
     @PostConstruct
     public void init() {
         //System.out.println("---UserDaoJPA");

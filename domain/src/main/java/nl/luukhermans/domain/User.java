@@ -1,19 +1,32 @@
 package nl.luukhermans.domain;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
 @Data
 @Builder
-public class User {
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@NamedQueries({
+        @NamedQuery(name = "student.findById", query = "SELECT u FROM User u WHERE u.ID = :ID"),
+        @NamedQuery(name = "student.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username")})
+public class User implements Serializable {
 
-    private final int ID;
+    @Id
+    @GeneratedValue
+    private int ID;
 
+    @Builder.Default
+    private Set<Message> messages = new TreeSet<>();
+    @Builder.Default
     private Set<User> followers = new TreeSet<>();
+    @Builder.Default
     private Set<User> following = new TreeSet<>();
 
     @NonNull
@@ -23,6 +36,9 @@ public class User {
     private String lastName;
 
     private String avatarUrl;
+
+    @Column(unique = true)
+    @NonNull
     private String username;
     private String bio;
     private String webpage;
@@ -35,5 +51,31 @@ public class User {
 
     public void followedBy(User user) {
         followers.add(user);
+    }
+
+    public void addMessage(Message message) {
+        messages.add(message);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.ID);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final User other = (User) obj;
+        return Objects.equals(this.username, other.username);
     }
 }

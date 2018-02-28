@@ -1,16 +1,19 @@
 package nl.luukhermans.services;
 
+import nl.luukhermans.dao.JPA;
 import nl.luukhermans.dao.UserDao;
 import nl.luukhermans.domain.User;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.Collection;
+import java.util.Objects;
 
 @Stateless
 public class UserService {
 
     @Inject
+    @JPA
     private UserDao userDao;
 
     public void addUser(User user) {
@@ -33,9 +36,13 @@ public class UserService {
         return user;
     }
 
-    public void followUser(int followerID, int followingID) {
+    public void followUser(int followerID, int followingID) throws Exception {
         User follower = userDao.findByID(followerID);
         User following = userDao.findByID(followingID);
+
+        if (Objects.isNull(follower) || Objects.isNull(following)) {
+            throw new Exception("User is not found");
+        }
 
         follower.followUser(following);
         following.followedBy(follower);

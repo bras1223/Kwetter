@@ -1,7 +1,6 @@
 package nl.luukhermans.dao;
 
 import nl.luukhermans.domain.Message;
-import nl.luukhermans.domain.User;
 
 import java.util.List;
 
@@ -13,6 +12,5 @@ public interface MessageDao {
 
     List<Message> getAllMessages();
 
-    List<Message> findUserMessages(User user);
-
+    int count();
 }

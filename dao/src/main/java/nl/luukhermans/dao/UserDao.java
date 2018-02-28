@@ -12,7 +12,11 @@ public interface UserDao {
 
     User findByID(int ID);
 
+    User findByUsername(String username);
+
     void updateUser(User user);
 
     void removeUser(User user);
+
+    int count();
 }

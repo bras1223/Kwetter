@@ -29,6 +29,11 @@ public class UserDaoColl implements UserDao {
     }
 
     @Override
+    public User findByUsername(String username) {
+        return null;
+    }
+
+    @Override
     public void updateUser(User user) {
         users.put(user.getID(), user);
     }
@@ -36,6 +41,11 @@ public class UserDaoColl implements UserDao {
     @Override
     public void removeUser(User user) {
         users.remove(user.getID());
+    }
+
+    @Override
+    public int count() {
+        return users.size();
     }
 
 }
