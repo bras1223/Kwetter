@@ -1,4 +1,6 @@
-import domain.Trend;
+package nl.luukhermans.dao;
+
+import nl.luukhermans.domain.Trend;
 
 import java.util.Collection;
 
