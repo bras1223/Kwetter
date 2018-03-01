@@ -1,30 +1,19 @@
 package nl.luukhermans.dao;
 
-import nl.luukhermans.domain.Message;
 import nl.luukhermans.domain.User;
-import nl.luukhermans.util.DatabaseCleaner;
-import org.junit.Before;
-import org.junit.Test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 
 public class MessageDaoJpaIT {
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("KwetterTestPU");
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("kwetterTestPU");
     private EntityManager em;
     private EntityTransaction tx;
     private User testUser;
     private MessageDao messageDao;
-
+/**
     @Before
     public void setUp() {
         try {
@@ -52,6 +41,6 @@ public class MessageDaoJpaIT {
         int messageCount = messageDao.count();
         tx.commit();
         assertThat(messageCount, is(expectedResult));
-    }
+    }**/
 
 }

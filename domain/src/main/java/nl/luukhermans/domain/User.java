@@ -14,8 +14,9 @@ import java.util.TreeSet;
 @AllArgsConstructor
 @NoArgsConstructor
 @NamedQueries({
-        @NamedQuery(name = "student.findById", query = "SELECT u FROM User u WHERE u.ID = :ID"),
-        @NamedQuery(name = "student.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username")})
+        @NamedQuery(name = "user.findById", query = "SELECT u FROM User u WHERE u.ID = :ID"),
+        @NamedQuery(name = "user.getAllUsers", query = "SELECT u FROM User u"),
+        @NamedQuery(name = "user.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username")})
 public class User implements Serializable {
 
     @Id

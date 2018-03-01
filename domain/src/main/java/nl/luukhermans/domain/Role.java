@@ -1,6 +1,8 @@
 package nl.luukhermans.domain;
 
-public class Role {
+import java.io.Serializable;
+
+public class Role implements Serializable {
 
     private String name;
     private String description;

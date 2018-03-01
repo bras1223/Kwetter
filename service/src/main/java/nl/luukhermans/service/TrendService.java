@@ -1,4 +1,4 @@
-package nl.luukhermans.services;
+package nl.luukhermans.service;
 
 import javax.ejb.Stateless;
 

@@ -1,4 +1,4 @@
-package nl.luukhermans.services;
+package nl.luukhermans.service;
 
 import nl.luukhermans.dao.JPA;
 import nl.luukhermans.dao.UserDao;

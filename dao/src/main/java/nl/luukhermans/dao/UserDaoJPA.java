@@ -24,13 +24,23 @@ public class UserDaoJPA implements UserDao {
 
     @Override
     public Collection<User> getAllUsers() {
-        return null;
+        TypedQuery<User> query = em.createNamedQuery("user.getAllUsers", User.class);
+        List<User> result = query.getResultList();
+        return result;
     }
 
     @Override
     public User findByID(int ID) {
         TypedQuery<User> query = em.createNamedQuery("user.findById", User.class);
         query.setParameter("ID", ID);
+        List<User> result = query.getResultList();
+        return result.get(0);
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        TypedQuery<User> query = em.createNamedQuery("user.findByUsername", User.class);
+        query.setParameter("username", username);
         List<User> result = query.getResultList();
         return result.get(0);
     }

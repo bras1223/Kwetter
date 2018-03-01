@@ -15,7 +15,7 @@ import static org.junit.Assert.assertThat;
 
 public class UserDaoJpaIT {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("KwetterTestPU");
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("kwetterTestPU");
     private EntityManager em;
     private EntityTransaction tx;
 
@@ -79,14 +79,14 @@ public class UserDaoJpaIT {
     }
 
     @Test
-    public void findUserByIdSuccesful() {
+    public void findUserByIdSuccessful() {
         User user = User.builder().firstName("Luuk").lastName("Hermans").username("luuk.hermans").build();
 
         tx.begin();
         userDao.addUser(user);
         tx.commit();
         tx.begin();
-        User foundUser = userDao.findByID(1);
+        User foundUser = userDao.findByID(user.getID());
         tx.commit();
         assertThat(foundUser, is(user));
     }

@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @NamedQueries({
         @NamedQuery(name = "message.findAllMessages", query = "SELECT m FROM Message m")})
-public class Message {
+public class Message implements Serializable {
 
     @Id
     @GeneratedValue
