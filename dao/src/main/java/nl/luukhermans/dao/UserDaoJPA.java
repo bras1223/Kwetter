@@ -30,11 +30,8 @@ public class UserDaoJPA implements UserDao {
     }
 
     @Override
-    public User findByID(int ID) {
-        TypedQuery<User> query = em.createNamedQuery("user.findById", User.class);
-        query.setParameter("ID", ID);
-        List<User> result = query.getResultList();
-        return result.get(0);
+    public User findByID(Long ID) {
+        return em.find(User.class, ID);
     }
 
     @Override
@@ -42,12 +39,16 @@ public class UserDaoJPA implements UserDao {
         TypedQuery<User> query = em.createNamedQuery("user.findByUsername", User.class);
         query.setParameter("username", username);
         List<User> result = query.getResultList();
+        if (result.size() == 0) {
+            return null;
+        }
         return result.get(0);
     }
 
     @Override
     public void updateUser(User user) {
         em.merge(user);
+        em.flush();
     }
 
     @Override

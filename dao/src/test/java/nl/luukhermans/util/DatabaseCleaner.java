@@ -1,5 +1,7 @@
 package nl.luukhermans.util;
 
+import nl.luukhermans.domain.Message;
+import nl.luukhermans.domain.Trend;
 import nl.luukhermans.domain.User;
 
 import javax.persistence.EntityManager;
@@ -8,7 +10,9 @@ import java.sql.SQLException;
 
 public class DatabaseCleaner {
     private static final Class<?>[] ENTITY_TYPES = {
-            User.class
+            Message.class,
+            User.class,
+            Trend.class
     };
     private final EntityManager em;
 

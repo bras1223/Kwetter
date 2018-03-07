@@ -11,7 +11,7 @@ import java.util.HashMap;
 @Default
 public class UserDaoColl implements UserDao {
 
-    private HashMap<Integer, User> users = new HashMap<>();
+    private HashMap<Long, User> users = new HashMap<>();
 
     @Override
     public void addUser(User user) {
@@ -24,7 +24,7 @@ public class UserDaoColl implements UserDao {
     }
 
     @Override
-    public User findByID(int ID) {
+    public User findByID(Long ID) {
         return users.get(ID);
     }
 

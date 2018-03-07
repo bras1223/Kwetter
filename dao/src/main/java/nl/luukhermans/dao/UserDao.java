@@ -10,7 +10,7 @@ public interface UserDao {
 
     Collection<User> getAllUsers();
 
-    User findByID(int ID);
+    User findByID(Long ID);
 
     User findByUsername(String username);
 

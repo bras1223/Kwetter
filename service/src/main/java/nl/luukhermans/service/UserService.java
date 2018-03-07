@@ -28,7 +28,8 @@ public class UserService {
         return userDao.getAllUsers();
     }
 
-    public User getUser(int ID) throws Exception {
+    public User findUserByID(Long ID) throws Exception {
+        Objects.requireNonNull(ID);
         User user = userDao.findByID(ID);
         if (user == null) {
             throw new Exception("User could not be found");
@@ -36,7 +37,16 @@ public class UserService {
         return user;
     }
 
-    public void followUser(int followerID, int followingID) throws Exception {
+    public User findUserByUsername(String username) throws Exception {
+        Objects.requireNonNull(username);
+        User user = userDao.findByUsername(username);
+        if (user == null) {
+            throw new Exception("User could not be found");
+        }
+        return user;
+    }
+
+    public void followUser(Long followerID, Long followingID) throws Exception {
         User follower = userDao.findByID(followerID);
         User following = userDao.findByID(followingID);
 

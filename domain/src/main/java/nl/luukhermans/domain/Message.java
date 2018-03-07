@@ -2,26 +2,25 @@ package nl.luukhermans.domain;
 
 import lombok.*;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
 @Builder
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @NamedQueries({
-        @NamedQuery(name = "message.findAllMessages", query = "SELECT m FROM Message m")})
+        @NamedQuery(name = "message.findAllMessages", query = "SELECT m FROM Message m"),
+        @NamedQuery(name = "message.findById", query = "SELECT m FROM Message m WHERE m.ID = :ID")})
 public class Message implements Serializable {
 
     @Id
-    @GeneratedValue
-    private int ID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long ID;
 
-    @NonNull
+    @ManyToOne
     private User sender;
 
     @NonNull

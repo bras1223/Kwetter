@@ -4,14 +4,14 @@ import nl.luukhermans.domain.Message;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 
 @Stateless
 @Default
 public class MessageDaoColl implements MessageDao {
 
-    private HashMap<Integer, Message> messages = new HashMap<>();
+    private HashMap<Long, Message> messages = new HashMap<>();
 
     @Override
     public void addMessage(Message message) {
@@ -24,8 +24,18 @@ public class MessageDaoColl implements MessageDao {
     }
 
     @Override
-    public List<Message> getAllMessages() {
-        return null;
+    public void updateMessage(Message message) {
+        messages.put(message.getID(), message);
+    }
+
+    @Override
+    public Message findMessageByID(Long ID) {
+        return messages.get(ID);
+    }
+
+    @Override
+    public Collection<Message> getAllMessages() {
+        return messages.values();
     }
 
     @Override

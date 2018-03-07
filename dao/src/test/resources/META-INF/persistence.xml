@@ -8,13 +8,13 @@
         <class>nl.luukhermans.domain.Trend</class>
         <class>nl.luukhermans.domain.User</class>
         <class>nl.luukhermans.domain.Role</class>
-        <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
+            <property name="javax.persistence.schema-generation.database.action"
+                      value="drop-and-create"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://:3306/kwetter_test"/>
             <property name="javax.persistence.jdbc.password" value="Luukhermans2"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
-            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
         </properties>
     </persistence-unit>
 </persistence>

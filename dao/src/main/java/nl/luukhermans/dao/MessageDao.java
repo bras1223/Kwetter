@@ -2,7 +2,7 @@ package nl.luukhermans.dao;
 
 import nl.luukhermans.domain.Message;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface MessageDao {
 
@@ -10,7 +10,11 @@ public interface MessageDao {
 
     void deleteMessage(Message message);
 
-    List<Message> getAllMessages();
+    void updateMessage(Message message);
+
+    Message findMessageByID(Long ID);
+
+    Collection<Message> getAllMessages();
 
     int count();
 }

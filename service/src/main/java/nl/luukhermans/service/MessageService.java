@@ -9,6 +9,7 @@ import nl.luukhermans.domain.User;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Objects;
 
 @Stateless
@@ -22,13 +23,12 @@ public class MessageService {
     private TrendService trendService;
 
     @Inject
+    @JPA
     private UserDao userDao;
 
-    public void addMessage(int userID, String messageText) throws Exception {
-        Objects.requireNonNull(userID);
+    public void addMessage(Long id, String messageText) throws Exception {
         Objects.requireNonNull(messageText);
-
-        User sender = userDao.findByID(userID);
+        User sender = userDao.findByID(id);
         if (Objects.isNull(sender)) {
             throw new Exception("User doesn't exist");
         }
@@ -37,5 +37,9 @@ public class MessageService {
 
         sender.addMessage(message);
         messageDao.addMessage(message);
+    }
+
+    public Collection<Message> getAllMessages() {
+        return messageDao.getAllMessages();
     }
 }

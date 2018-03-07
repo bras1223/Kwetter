@@ -1,12 +1,13 @@
 package nl.luukhermans.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
-import java.util.TreeSet;
 
 @Data
 @Builder
@@ -20,15 +21,23 @@ import java.util.TreeSet;
 public class User implements Serializable {
 
     @Id
-    @GeneratedValue
-    private int ID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long ID;
 
     @Builder.Default
-    private Set<Message> messages = new TreeSet<>();
+    @OneToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    private List<Message> messages = new LinkedList<>();
+
     @Builder.Default
-    private Set<User> followers = new TreeSet<>();
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "followers")
+    private List<User> followers = new LinkedList<>();
     @Builder.Default
-    private Set<User> following = new TreeSet<>();
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "following")
+    private List<User> following = new LinkedList<>();
 
     @NonNull
     private String firstName;

@@ -4,25 +4,45 @@ import nl.luukhermans.domain.Trend;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Collection;
+import java.util.HashMap;
 
 @Stateless
 @Default
 public class TrendsDaoColl implements TrendDao {
-    private Set<Trend> trends = new HashSet<Trend>();
+    private HashMap<Long, Trend> trends = new HashMap<>();
 
-    public Set<Trend> getAllTrends() {
-        return trends;
+    public Collection<Trend> getAllTrends() {
+        return trends.values();
     }
 
-    public void addOrUpTrend() {
-
+    @Override
+    public Trend findTrendByID(Long ID) {
+        return trends.get(ID);
     }
 
-    public void removeOrDownTrend() {
-
+    @Override
+    public Trend findTrendByHashtag(String hashtag) {
+        return null;
     }
 
+    @Override
+    public void updateTrend(Trend trend) {
+        trends.put(trend.getID(), trend);
+    }
 
+    @Override
+    public void addTrend(Trend trend) {
+        trends.put(trend.getID(), trend);
+    }
+
+    @Override
+    public void deleteTrend(Trend trend) {
+        trends.remove(trend.getID());
+    }
+
+    @Override
+    public int count() {
+        return trends.size();
+    }
 }

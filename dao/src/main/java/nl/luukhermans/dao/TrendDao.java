@@ -8,8 +8,16 @@ public interface TrendDao {
 
     Collection<Trend> getAllTrends();
 
-    void addOrUpTrend();
+    Trend findTrendByID(Long ID);
 
-    void removeOrDownTrend();
+    Trend findTrendByHashtag(String hashtag);
+
+    void updateTrend(Trend trend);
+
+    void addTrend(Trend trend);
+
+    void deleteTrend(Trend trend);
+
+    int count();
 
 }

@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.Collection;
 import java.util.List;
 
 @Stateless
@@ -27,7 +28,17 @@ public class MessageDaoJPA implements MessageDao {
     }
 
     @Override
-    public List<Message> getAllMessages() {
+    public void updateMessage(Message message) {
+        em.merge(message);
+    }
+
+    @Override
+    public Message findMessageByID(Long ID) {
+        return em.find(Message.class, ID);
+    }
+
+    @Override
+    public Collection<Message> getAllMessages() {
         TypedQuery<Message> query = em.createNamedQuery("message.findAllMessages", Message.class);
         List<Message> result = query.getResultList();
         return result;
@@ -46,4 +57,5 @@ public class MessageDaoJPA implements MessageDao {
     public void setEm(EntityManager em) {
         this.em = em;
     }
+
 }

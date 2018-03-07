@@ -90,4 +90,34 @@ public class UserDaoJpaIT {
         tx.commit();
         assertThat(foundUser, is(user));
     }
+
+    @Test
+    public void findUserByUsernameSuccessful() {
+        User user = User.builder().firstName("Luuk").lastName("Hermans").username("luuk.hermans").build();
+
+        tx.begin();
+        userDao.addUser(user);
+        tx.commit();
+        tx.begin();
+        User foundUser = userDao.findByUsername(user.getUsername());
+        tx.commit();
+        assertThat(foundUser, is(user));
+    }
+
+    @Test
+    public void updateUserSuccesful() {
+        User user = User.builder().firstName("Luuk").lastName("Hermans").username("luuk.hermans").build();
+
+        tx.begin();
+        userDao.addUser(user);
+        tx.commit();
+        user.setBio("Hello, i'm Luuk!");
+        tx.begin();
+        userDao.updateUser(user);
+        tx.commit();
+        tx.begin();
+        User foundUser = userDao.findByID(user.getID());
+        tx.commit();
+        assertThat(foundUser.getBio(), is(user.getBio()));
+    }
 }
