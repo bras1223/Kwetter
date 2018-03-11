@@ -9,6 +9,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
 public class TrendServiceTest {
 
     @Rule
@@ -22,6 +25,13 @@ public class TrendServiceTest {
     public void SetUp() throws Exception {
         trendService = new TrendService();
         MockitoAnnotations.initMocks(this);
+    }
+
+    @Test
+    public void getAllTrends_returnsTrends() {
+        trendService.getAllTrends();
+
+        verify(trendDao, times(1)).getAllTrends();
     }
 
     @Test
