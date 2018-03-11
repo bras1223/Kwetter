@@ -1,5 +1,7 @@
-package nl.luukhermans.dao;
+package nl.luukhermans.dao.jpa;
 
+import nl.luukhermans.dao.JPA;
+import nl.luukhermans.dao.TrendDao;
 import nl.luukhermans.domain.Trend;
 
 import javax.ejb.Stateless;
@@ -33,6 +35,9 @@ public class TrendDaoJPA implements TrendDao {
         TypedQuery<Trend> query = em.createNamedQuery("trend.findByHashtag", Trend.class);
         query.setParameter("hashtag", hashtag);
         List<Trend> result = query.getResultList();
+        if (result.size() == 0) {
+            return null;
+        }
         return result.get(0);
     }
 

@@ -1,5 +1,6 @@
-package nl.luukhermans.dao;
+package nl.luukhermans.dao.coll;
 
+import nl.luukhermans.dao.UserDao;
 import nl.luukhermans.domain.User;
 
 import javax.ejb.Stateless;
@@ -30,6 +31,11 @@ public class UserDaoColl implements UserDao {
 
     @Override
     public User findByUsername(String username) {
+        for (User u : users.values()) {
+            if (u.getUsername() == username) {
+                return u;
+            }
+        }
         return null;
     }
 

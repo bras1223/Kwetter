@@ -1,5 +1,6 @@
-package nl.luukhermans.dao;
+package nl.luukhermans.dao.coll;
 
+import nl.luukhermans.dao.MessageDao;
 import nl.luukhermans.domain.Message;
 
 import javax.ejb.Stateless;
