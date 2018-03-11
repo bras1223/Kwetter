@@ -1,11 +1,13 @@
 package nl.luukhermans.service;
 
+import nl.luukhermans.domain.Message;
 import nl.luukhermans.domain.User;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
+import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 @Startup
@@ -44,15 +46,13 @@ public class DataInit {
             e.printStackTrace();
         }
 
-        System.out.print(user);
-        System.out.print(user2);
         try {
-            messageService.addMessage(user.getID(), "Hey hallo!");
-            messageService.addMessage(user.getID(), "Mijn eerste kweet.");
-            messageService.addMessage(user3.getID(), "#kwetter is gaaf!");
-            messageService.addMessage(user2.getID(), "Testberichtje");
-            messageService.addMessage(user4.getID(), "Hey hallo!");
-            messageService.addMessage(user5.getID(), "Mooi he?!");
+            messageService.addMessage(Message.builder().sender(user3).message("Hey hallo!").timestamp(LocalDateTime.now()).build());
+            messageService.addMessage(Message.builder().sender(user3).message("Mijn eerste kweet.").timestamp(LocalDateTime.now()).build());
+            messageService.addMessage(Message.builder().sender(user3).message("#kwetter is gaaf!").timestamp(LocalDateTime.now()).build());
+            messageService.addMessage(Message.builder().sender(user2).message("Berichtje.").timestamp(LocalDateTime.now()).build());
+            messageService.addMessage(Message.builder().sender(user4).message("Hey hallo!").timestamp(LocalDateTime.now()).build());
+            messageService.addMessage(Message.builder().sender(user5).message("Mooi he?!").timestamp(LocalDateTime.now()).build());
         } catch (Exception e) {
             e.printStackTrace();
         }
