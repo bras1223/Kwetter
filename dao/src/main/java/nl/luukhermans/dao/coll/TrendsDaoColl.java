@@ -1,5 +1,6 @@
-package nl.luukhermans.dao;
+package nl.luukhermans.dao.coll;
 
+import nl.luukhermans.dao.TrendDao;
 import nl.luukhermans.domain.Trend;
 
 import javax.ejb.Stateless;
@@ -23,6 +24,11 @@ public class TrendsDaoColl implements TrendDao {
 
     @Override
     public Trend findTrendByHashtag(String hashtag) {
+        for (Trend t : trends.values()) {
+            if (t.getHashtag() == hashtag) {
+                return t;
+            }
+        }
         return null;
     }
 

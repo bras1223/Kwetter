@@ -1,5 +1,7 @@
-package nl.luukhermans.dao;
+package nl.luukhermans.dao.jpa;
 
+import nl.luukhermans.dao.JPA;
+import nl.luukhermans.dao.MessageDao;
 import nl.luukhermans.domain.Message;
 
 import javax.annotation.PostConstruct;
