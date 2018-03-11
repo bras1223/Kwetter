@@ -7,7 +7,6 @@
         <class>nl.luukhermans.domain.Message</class>
         <class>nl.luukhermans.domain.Trend</class>
         <class>nl.luukhermans.domain.User</class>
-        <class>nl.luukhermans.domain.Role</class>
         <properties>
             <property name="javax.persistence.schema-generation.database.action"
                       value="drop-and-create"/>
