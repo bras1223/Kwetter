@@ -1,5 +1,6 @@
-package nl.luukhermans.dao;
+package nl.luukhermans.dao.jpa;
 
+import nl.luukhermans.dao.TrendDao;
 import nl.luukhermans.domain.Trend;
 import nl.luukhermans.util.DatabaseCleaner;
 import org.junit.Before;
@@ -103,7 +104,7 @@ public class TrendDaoJpaIT {
     }
 
     @Test
-    public void updateUserSuccesful() {
+    public void updateTrendSuccesful() {
         Trend trend = Trend.builder().timesUsed(1).hashtag("Kwetter").build();
 
         tx.begin();

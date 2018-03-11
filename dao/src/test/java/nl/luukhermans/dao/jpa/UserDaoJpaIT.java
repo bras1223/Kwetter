@@ -1,5 +1,6 @@
-package nl.luukhermans.dao;
+package nl.luukhermans.dao.jpa;
 
+import nl.luukhermans.dao.UserDao;
 import nl.luukhermans.domain.User;
 import nl.luukhermans.util.DatabaseCleaner;
 import org.junit.Before;
