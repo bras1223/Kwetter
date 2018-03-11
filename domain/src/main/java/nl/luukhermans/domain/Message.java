@@ -5,6 +5,8 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.LinkedList;
+import java.util.List;
 
 @Data
 @Builder
@@ -26,7 +28,25 @@ public class Message implements Serializable {
     @NonNull
     private String message;
 
+    @Builder.Default
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "mentions")
+    private List<User> mentions = new LinkedList<>();
+
+    @Builder.Default
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "trends")
+    private List<Trend> trends = new LinkedList<>();
+
     @NonNull
     private LocalDateTime timestamp;
+
+    public void addMention(User mentioned) {
+        this.mentions.add(mentioned);
+    }
+
+    public void addTrend(Trend trend) {
+        this.trends.add(trend);
+    }
 
 }

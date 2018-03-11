@@ -1,6 +1,5 @@
 package nl.luukhermans.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,15 +28,18 @@ public class User implements Serializable {
     private List<Message> messages = new LinkedList<>();
 
     @Builder.Default
-    @JsonIgnore
     @OneToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "followers")
     private List<User> followers = new LinkedList<>();
+
     @Builder.Default
-    @JsonIgnore
     @OneToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "following")
     private List<User> following = new LinkedList<>();
+
+    @Builder.Default
+    @JoinTable(name = "mentions")
+    private List<Message> mentions = new LinkedList<>();
 
     @NonNull
     private String firstName;
@@ -59,12 +61,29 @@ public class User implements Serializable {
         following.add(user);
     }
 
+    public void unfollowUser(User user) {
+        following.remove(user);
+    }
+
     public void followedBy(User user) {
         followers.add(user);
     }
 
+    public void unfollowedBy(User user) {
+        followers.remove(user);
+    }
+
+
     public void addMessage(Message message) {
         messages.add(message);
+    }
+
+    public void addMention(Message message) {
+        mentions.add(message);
+    }
+
+    public void deleteMention(Message message) {
+        mentions.remove(message);
     }
 
     @Override
